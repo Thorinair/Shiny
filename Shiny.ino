@@ -18,9 +18,9 @@ void connectSuccess(int idEntry);
 void connectFail(int idEntry);
 
 String getGraphUrl(String key, String id, int width, int height) {
-    String url = "https://api.varipass.org/?action=sgraph&eink=true&";
+    String url = "https://api.varipass.org/?action=sgraph&eink=true&thick=true";
     if (key != NULL)
-        url += "key=" + key;
+        url += "&key=" + key;
     url += "&id=" + id;
     url += "&width=" + String(width);
     url += "&height=" + String(height);
