@@ -103,7 +103,9 @@ void loop() {
             display.println("Bat: " + String(bat, 1) + "%");
         }
 
-        display.partialUpdate();
+        display.drawRect(697, 1, 102, 8, BLACK);
+        display.fillRect(698, 2, 100, 6, WHITE);
+        display.display();
     }
     else {
         counter++;
