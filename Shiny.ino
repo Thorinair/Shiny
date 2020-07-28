@@ -59,7 +59,7 @@ void connectFail(int idEntry) {
 
 void setup() {
     display.begin();
-    display.setTextSize(1);
+    display.setTextSize(2);
     display.clearDisplay();
     display.display();
 
@@ -76,7 +76,7 @@ void setup() {
     twifiConnect(true);
 
     display.clearDisplay();
-    display.setCursor(1, 1);
+    display.setCursor(2, 2);
     display.println("WiFI: " + String(nameWiFi));
     display.display();
 }
@@ -85,26 +85,27 @@ void loop() {
     if (counter >= UPDATE_INTERVAL - 1) {
         counter = 0;
 
-        display.fillRect(370, 1, 70, 8, WHITE);
-        display.setCursor(370, 1);
+        display.fillRect(340, 2, 140, 16, WHITE);
+        display.setTextSize(2);
+        display.setCursor(340, 2);
         display.println("Loading...");
-        display.drawRect(697, 1, 102, 8, BLACK);
-        display.fillRect(698, 2, 100, 6, BLACK);
+        display.drawRect(696, 2, 102, 16, BLACK);
+        display.fillRect(697, 3, 100, 14, BLACK);
         display.partialUpdate();
 
-        drawGraph(VARIPASS_KEY, VARIPASS_ID_TEMPERATURE, 0,   10, 400, 590);
-        drawGraph(VARIPASS_KEY, VARIPASS_ID_HUMIDITY,    400, 10, 400, 590);
+        drawGraph(VARIPASS_KEY, VARIPASS_ID_TEMPERATURE, 0,   20, 400, 580);
+        drawGraph(VARIPASS_KEY, VARIPASS_ID_HUMIDITY,    400, 20, 400, 580);
 
-        display.fillRect(370, 1, 70, 8, WHITE);
+        display.fillRect(340, 2, 140, 16, WHITE);
         int result;
         double bat = varipassReadFloat(VARIPASS_KEY, VARIPASS_ID_BATTERY, &result);
         if (result == VARIPASS_RESULT_SUCCESS) {
-            display.setCursor(370, 1);
+            display.setCursor(340, 2);
             display.println("Bat: " + String(bat, 1) + "%");
         }
 
-        display.drawRect(697, 1, 102, 8, BLACK);
-        display.fillRect(698, 2, 100, 6, WHITE);
+        display.drawRect(696, 2, 102, 16, BLACK);
+        display.fillRect(697, 3, 100, 14, WHITE);
         display.display();
     }
     else {
@@ -112,9 +113,9 @@ void loop() {
 
         int perc = ((float)counter / UPDATE_INTERVAL) * 100;
 
-        display.drawRect(697, 1, 102, 8, BLACK);
-        display.fillRect(698, 2, perc, 6, BLACK);
-        display.fillRect(698+perc, 2, 100-perc, 6, WHITE);
+        display.drawRect(696, 2, 102, 16, BLACK);
+        display.fillRect(697, 3, perc, 14, BLACK);
+        display.fillRect(697+perc, 3, 100-perc, 14, WHITE);
         display.partialUpdate();
     }
     delay (1000);
